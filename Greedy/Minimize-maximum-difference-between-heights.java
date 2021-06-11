@@ -12,3 +12,5 @@ class Solution {
         return ans;
     }
 }
+
+// Best explanation for this problem https://leetcode.com/problems/smallest-range-ii/discuss/173389/simple-C%2B%2B-solution-with-explanation
