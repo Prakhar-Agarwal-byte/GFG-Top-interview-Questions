@@ -1,3 +1,7 @@
+// The logic here is that if the thief can only be caught by the leftmost police because its the nearest to it. If it is farther than k and is to left then police cannot catch 
+//the thief. So we remove it from list. else if the thief is to the right than we have to remove the police so that some other police to the right can catcht the thief.
+
+
 class Solution {
     static int catchThieves(char arr[], int n, int k) {
         Queue<Integer> thieves = new LinkedList<>();
