@@ -1,15 +1,18 @@
+import java.util.Arrays;
+
 class Solution {
   public boolean canJump(int[] nums) {
-    boolean[] dp = new boolean[nums.length + 1];
-    dp[0] = true;
-    for (int i = 1; i <= nums.length; i++) {
-      int max = nums[i-1];
-      while (max-- > 0) {
-        if (i - max >= 0) {
-          dp[i] = dp[i] || dp[i - max];
+    if (nums[0] == 0 && nums.length > 1) return false;
+    int[] dp = new int[nums.length];
+    Arrays.fill(dp, Integer.MAX_VALUE-1);
+    dp[0] = 0;
+    for (int i = 1; i < nums.length; i++) {
+      for (int j = 0; j < i; j++) {
+        if (i <= j + nums[j]) {
+            dp[i] = Math.min(dp[i], 1 + dp[j]);
         }
       }
     }
-    return dp[nums.length];
+    return dp[nums.length-1] == Integer.MAX_VALUE-1 ? false : true;
   }
 }
