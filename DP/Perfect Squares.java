@@ -1,15 +1,16 @@
 class Solution {
   public int numSquares(int n) {
+    if (n <= 3)
+      return n;
     int[] dp = new int[n + 1];
-    dp[0] = 0;
-    for (int i = 1; i <= n; i++) {
-      int j = 1;
-      int min = Integer.MAX_VALUE;
-      while (i - j * j >= 0) {
-        min = Math.min(min, dp[i - j * j] + 1);
-        j++;
+    for (int i = 0; i <= 3; i++) {
+      dp[i] = i;
+    }
+    for (int i = 4; i <= n; i++) {
+      dp[i] = i;
+      for (int j = 1; j * j <= i; j++) {
+        dp[i] = Math.min(dp[i], 1 + dp[i - j * j]);
       }
-      dp[i] = min;
     }
     return dp[n];
   }
